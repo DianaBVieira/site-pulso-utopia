@@ -35,3 +35,13 @@ sem passo de build. Domínio pretendido: `pulso.utopiadesenvolvimentos.com.br`
 
 Versão anterior em `vinext` (React/RSC em Cloudflare Worker) substituída por HTML
 estático. O código antigo está no histórico do Git.
+
+---
+
+## Status e pendências
+
+Visão completa (o que foi feito, o que falta, deploy, DNS) em
+`C:\dev\STATUS-site-pulso-utopia.md` e `C:\dev\STATUS-Utopia-VISAO-GERAL.md`.
+
+Resumo: página pronta, **falta publicar** (Vercel/Cloudflare Pages/GitHub Pages)
+e criar o registro CNAME do subdomínio no Registro.br.
