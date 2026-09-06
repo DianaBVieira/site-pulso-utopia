@@ -36,3 +36,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# packaged site bundle
+site-package.tar.gz
+*.tar.gz
