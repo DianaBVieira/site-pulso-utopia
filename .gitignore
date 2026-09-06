@@ -1,42 +1,15 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/.vinext/
-/out/
-
-# misc
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# local environment
-.env*
-
-# deployment and generated files
+Thumbs.db
+*.log
+.env
+.env.*
+.claude/settings.local.json
+node_modules/
+dist/
 .vercel
-next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
-
-# packaged site bundle
-site-package.tar.gz
+.next/
+.vinext/
+.vite/
+.wrangler/
 *.tar.gz
+next-env.d.ts
