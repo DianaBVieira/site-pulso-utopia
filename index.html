@@ -656,7 +656,9 @@ section{position:relative}
     counters.forEach(runCount);
   }
 
-  /* speech synthesis — "ouvir a frase" */
+  /* "ouvir a frase" — mesma voz do app: TTS do sistema em pt-BR, voz "feminina"
+     (o app usa window.speechSynthesis com lang pt-BR e pitch 1.15; sem escolher
+     uma voz específica, deixa o padrão do dispositivo) */
   function speak(text) {
     try {
       var synth = window.speechSynthesis;
@@ -664,11 +666,7 @@ section{position:relative}
       synth.cancel();
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'pt-BR';
-      u.rate = 0.98;
-      var voices = synth.getVoices();
-      var v = voices.find(function (x) { return /pt(-|_)BR/i.test(x.lang); }) ||
-              voices.find(function (x) { return /^pt/i.test(x.lang); });
-      if (v) u.voice = v;
+      u.pitch = 1.15;
       synth.speak(u);
     } catch (e) {}
   }
