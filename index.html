@@ -186,6 +186,9 @@ section{position:relative}
 .voz-listen{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;font-size:13.5px;color:var(--bg);background:var(--white);border:0;border-radius:999px;padding:11px 18px;cursor:pointer;transition:background .25s ease,color .25s ease}
 .voz-listen:hover{background:var(--coral);color:#fff}
 .voz-listen svg{width:14px;height:14px}
+.voz-listen.is-playing{background:var(--coral);color:#fff}
+.voz-listen.is-playing .voz-listen-label{display:none}
+.voz-listen.is-playing::after{content:"Parar"}
 .voz-bullets{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px;font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
 
 /* camadas */
@@ -433,27 +436,27 @@ section{position:relative}
           <div class="when">A cada 60 min</div>
           <div class="kind">Tarefa · Hidratação</div>
           <blockquote>“Diana! Pare tudo o que está fazendo, levante e vá beber água.”</blockquote>
-          <button class="voz-listen" type="button" data-say="Diana! Pare tudo o que está fazendo, levante e vá beber água.">
+          <button class="voz-listen" type="button" data-audio="assets/alarme-agua.mp3" data-say="Diana! Pare tudo o que está fazendo, levante e vá beber água.">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-            Ouvir a frase
+            <span class="voz-listen-label">Ouvir o alarme</span>
           </button>
         </div>
         <div class="voz-card" data-reveal>
           <div class="when">Toda quinta</div>
           <div class="kind">Tarefa · Casa</div>
           <blockquote>“Maria, hoje é dia de regar a sua roseira. Faça agora para não esquecer.”</blockquote>
-          <button class="voz-listen" type="button" data-say="Maria, hoje é dia de regar a sua roseira. Faça agora para não esquecer.">
+          <button class="voz-listen" type="button" data-audio="assets/alarme-tarefa.mp3" data-say="Maria, hoje é dia de regar a sua roseira. Faça agora para não esquecer.">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-            Ouvir a frase
+            <span class="voz-listen-label">Ouvir o alarme</span>
           </button>
         </div>
         <div class="voz-card" data-reveal>
           <div class="when">Todo dia, 08:00</div>
           <div class="kind">Medicamento</div>
           <blockquote>“Hora de tomar o remédio losartana para a sua pressão.”</blockquote>
-          <button class="voz-listen" type="button" data-say="Hora de tomar o remédio losartana para a sua pressão.">
+          <button class="voz-listen" type="button" data-audio="assets/alarme-remedio.mp3" data-say="Hora de tomar o remédio losartana para a sua pressão.">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-            Ouvir a frase
+            <span class="voz-listen-label">Ouvir o alarme</span>
           </button>
         </div>
       </div>
@@ -656,13 +659,18 @@ section{position:relative}
     counters.forEach(runCount);
   }
 
-  /* "ouvir a frase" — mesma voz do app: TTS do sistema em pt-BR, voz "feminina"
-     (o app usa window.speechSynthesis com lang pt-BR e pitch 1.15; sem escolher
-     uma voz específica, deixa o padrão do dispositivo) */
-  function speak(text) {
+  /* "ouvir o alarme" — toca o áudio real do app (música + voz).
+     Reserva: TTS do sistema em pt-BR (mesmo caminho do app fora do celular). */
+  var curAudio = null, curBtn = null;
+  function stopAlarm() {
+    if (curAudio) { curAudio.pause(); try { curAudio.currentTime = 0; } catch (e) {} }
+    if (curBtn) curBtn.classList.remove('is-playing');
+    curAudio = null; curBtn = null;
+  }
+  function speakFallback(text) {
     try {
       var synth = window.speechSynthesis;
-      if (!synth) return;
+      if (!synth || !text) return;
       synth.cancel();
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'pt-BR';
@@ -670,8 +678,31 @@ section{position:relative}
       synth.speak(u);
     } catch (e) {}
   }
-  root.querySelectorAll('[data-say]').forEach(function (btn) {
-    btn.addEventListener('click', function () { speak(btn.getAttribute('data-say')); });
+  root.querySelectorAll('.voz-listen').forEach(function (btn) {
+    var audio = null;
+    btn.addEventListener('click', function () {
+      if (curBtn === btn) { stopAlarm(); return; }
+      stopAlarm();
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+      var src = btn.getAttribute('data-audio');
+      if (!src) { speakFallback(btn.getAttribute('data-say')); return; }
+      if (!audio) {
+        audio = new Audio(src);
+        audio.preload = 'none';
+        audio.addEventListener('ended', function () { if (curBtn === btn) stopAlarm(); });
+        audio.addEventListener('error', function () {
+          if (curBtn === btn) stopAlarm();
+          speakFallback(btn.getAttribute('data-say'));
+        });
+      }
+      curAudio = audio; curBtn = btn;
+      btn.classList.add('is-playing');
+      var p = audio.play();
+      if (p && p.catch) p.catch(function () {
+        if (curBtn === btn) stopAlarm();
+        speakFallback(btn.getAttribute('data-say'));
+      });
+    });
   });
 
   /* progress bar + floating cta + parallax */
