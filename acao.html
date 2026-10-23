@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#4B285D" />
+<title>Pulso Utopia — Confirmação</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/pulso-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--plum:#4B285D;--coral:#F47768;--green:#4F8F7D;--cream:#FFF8F2;--ink:#292532;--muted:#6F6574;--lav:#F1E8F4}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:var(--ink);background:radial-gradient(900px 500px at 100% 0,var(--lav),transparent 60%),radial-gradient(700px 500px at 0 100%,#FDE6DF,transparent 60%),var(--cream);display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{width:100%;max-width:460px;background:#fff;border:1px solid #eadfd6;border-radius:28px;padding:34px 28px;box-shadow:0 18px 50px rgba(75,40,93,.12);text-align:center}
+  .logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:22px}
+  .logo img{width:60px;height:60px;border-radius:16px}
+  .logo span{font-family:Manrope,sans-serif;font-weight:800;font-size:26px;color:var(--plum);letter-spacing:-.5px}
+  h1{font-family:Manrope,sans-serif;font-weight:800;font-size:28px;line-height:1.15;margin:6px 0 10px;color:var(--plum);letter-spacing:-.5px}
+  p{font-size:18px;line-height:1.5;margin:0 0 16px;color:var(--muted)}
+  .emoji{font-size:54px;line-height:1;margin-bottom:8px}
+  .btn{display:inline-block;width:100%;border:0;cursor:pointer;background:var(--plum);color:#fff;font-family:Manrope,sans-serif;font-weight:800;font-size:18px;padding:16px 24px;border-radius:14px;text-decoration:none;margin-top:6px}
+  .btn.alt{background:#fff;color:var(--plum);border:2px solid var(--plum)}
+  .btn[disabled]{opacity:.6;cursor:default}
+  label{display:block;text-align:left;font-weight:700;font-size:16px;margin:14px 0 6px}
+  input{width:100%;font:inherit;font-size:18px;padding:14px 16px;border:2px solid #d9cdd6;border-radius:14px;outline:none}
+  input:focus{border-color:var(--plum)}
+  .err{color:#b3261e;font-size:16px;margin:10px 0 0;min-height:20px}
+  .small{font-size:15px;color:var(--muted);margin-top:22px}
+  .small a{color:var(--plum);font-weight:700;text-decoration:none}
+  .hide{display:none}
+  .spin{width:38px;height:38px;border:4px solid var(--lav);border-top-color:var(--plum);border-radius:50%;margin:10px auto 18px;animation:s 1s linear infinite}
+  @keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="logo"><img src="assets/pulso-icon.png" alt="Pulso Utopia" /><span>Pulso Utopia</span></div>
+
+  <section id="carregando"><div class="spin"></div><h1>Só um instante…</h1><p>Estamos conferindo o seu link.</p></section>
+
+  <section id="verificado" class="hide">
+    <div class="emoji">🎉</div>
+    <h1>E-mail confirmado!</h1>
+    <p>Pronto, está tudo certo. Agora é só voltar ao app e entrar com o seu e-mail e a sua senha. Seu teste grátis de 14 dias, sem cartão, já pode começar.</p>
+    <a class="btn" id="abrirApp" href="#">Abrir o Pulso Utopia</a>
+  </section>
+
+  <section id="senha" class="hide">
+    <div class="emoji">🔑</div>
+    <h1>Crie uma nova senha</h1>
+    <p id="senhaConta">Escolha uma senha com pelo menos 8 caracteres.</p>
+    <form id="formSenha" novalidate>
+      <label for="s1">Nova senha</label>
+      <input id="s1" type="password" autocomplete="new-password" minlength="8" />
+      <label for="s2">Repita a nova senha</label>
+      <input id="s2" type="password" autocomplete="new-password" minlength="8" />
+      <div class="err" id="erroSenha" role="alert"></div>
+      <button class="btn" id="salvarSenha" type="submit">Salvar nova senha</button>
+    </form>
+  </section>
+
+  <section id="senhaOk" class="hide">
+    <div class="emoji">✅</div>
+    <h1>Senha atualizada!</h1>
+    <p>Agora é só voltar ao app e entrar com a nova senha.</p>
+    <a class="btn" id="abrirApp2" href="#">Abrir o Pulso Utopia</a>
+  </section>
+
+  <section id="email" class="hide">
+    <div class="emoji">📧</div>
+    <h1>E-mail de acesso restaurado</h1>
+    <p>Tudo certo: o e-mail da sua conta voltou para o endereço anterior. Se você não pediu a troca, recomendamos criar uma nova senha pela opção “Esqueci minha senha” no app.</p>
+    <a class="btn" id="abrirApp3" href="#">Abrir o Pulso Utopia</a>
+  </section>
+
+  <section id="erro" class="hide">
+    <div class="emoji">⏳</div>
+    <h1>Esse link não vale mais</h1>
+    <p id="erroTexto">Ele pode ter vencido ou já ter sido usado. Sem problema: volte ao app e peça um novo.</p>
+    <a class="btn" id="abrirApp4" href="#">Abrir o Pulso Utopia</a>
+  </section>
+
+  <p class="small">Dúvidas? <a href="https://wa.me/5527996708542">WhatsApp</a> · <a href="mailto:utopiadesenvolvimentos@gmail.com">utopiadesenvolvimentos@gmail.com</a><br>Siga <a href="https://www.instagram.com/pulsoutopia/">@pulsoutopia</a> no Instagram</p>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, applyActionCode, verifyPasswordResetCode, confirmPasswordReset, checkActionCode } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyBU3R_lczustLeT8oh9ZboEPj8RHgCPG08",
+  authDomain: "pulso-utopia-desenvolvimento.firebaseapp.com",
+  projectId: "pulso-utopia-desenvolvimento",
+});
+const auth = getAuth(app);
+
+const q = new URLSearchParams(location.search);
+const mode = q.get("mode");
+const code = q.get("oobCode");
+const PKG = "br.com.utopiadesenvolvimentos.pulsoutopia";
+const PLAY = "https://play.google.com/store/apps/details?id=" + PKG;
+// Abre o app instalado; se não houver, cai na ficha da Google Play.
+const appHref = /android/i.test(navigator.userAgent)
+  ? "intent://#Intent;package=" + PKG + ";S.browser_fallback_url=" + encodeURIComponent(PLAY) + ";end"
+  : PLAY;
+for (const id of ["abrirApp", "abrirApp2", "abrirApp3", "abrirApp4"]) document.getElementById(id).href = appHref;
+
+const show = (id) => {
+  for (const s of document.querySelectorAll("main section")) s.classList.add("hide");
+  document.getElementById(id).classList.remove("hide");
+};
+const msg = (e) => {
+  const c = (e && e.code) || "";
+  if (c === "auth/expired-action-code") return "Esse link venceu. Volte ao app e peça um novo.";
+  if (c === "auth/invalid-action-code") return "Esse link é inválido ou já foi usado. Volte ao app e peça um novo.";
+  if (c === "auth/network-request-failed") return "Parece que a conexão caiu. Confira a internet e abra o link de novo.";
+  return "Não foi possível concluir. Volte ao app e peça um novo link.";
+};
+const fail = (e) => { document.getElementById("erroTexto").textContent = msg(e); show("erro"); };
+
+(async () => {
+  if (!mode || !code) return fail({ code: "auth/invalid-action-code" });
+  try {
+    if (mode === "verifyEmail") {
+      await applyActionCode(auth, code);
+      history.replaceState(null, "", location.pathname);
+      show("verificado");
+    } else if (mode === "resetPassword") {
+      const email = await verifyPasswordResetCode(auth, code);
+      document.getElementById("senhaConta").textContent = "Conta: " + email + ". Escolha uma senha com pelo menos 8 caracteres.";
+      show("senha");
+      document.getElementById("formSenha").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const s1 = document.getElementById("s1").value, s2 = document.getElementById("s2").value;
+        const erro = document.getElementById("erroSenha");
+        erro.textContent = "";
+        if (s1.length < 8) { erro.textContent = "A senha precisa ter pelo menos 8 caracteres."; return; }
+        if (s1 !== s2) { erro.textContent = "As senhas não são iguais. Confira e tente de novo."; return; }
+        const btn = document.getElementById("salvarSenha");
+        btn.disabled = true; btn.textContent = "Salvando…";
+        try {
+          await confirmPasswordReset(auth, code, s1);
+          history.replaceState(null, "", location.pathname);
+          show("senhaOk");
+        } catch (e) {
+          btn.disabled = false; btn.textContent = "Salvar nova senha";
+          if (e && (e.code === "auth/expired-action-code" || e.code === "auth/invalid-action-code")) fail(e);
+          else erro.textContent = e && e.code === "auth/weak-password" ? "Escolha uma senha mais forte, com pelo menos 8 caracteres." : msg(e);
+        }
+      });
+    } else if (mode === "recoverEmail") {
+      await checkActionCode(auth, code);
+      await applyActionCode(auth, code);
+      history.replaceState(null, "", location.pathname);
+      show("email");
+    } else {
+      fail({ code: "auth/invalid-action-code" });
+    }
+  } catch (e) {
+    fail(e);
+  }
+})();
+</script>
+</body>
+</html>
