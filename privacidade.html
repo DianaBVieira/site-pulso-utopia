@@ -76,7 +76,7 @@ footer a{color:var(--ink-dim)}
 <main>
   <div class="eyebrow">Documento legal</div>
   <h1>Política de Privacidade</h1>
-  <p class="updated">Última atualização: 14 de setembro de 2026</p>
+  <p class="updated">Última atualização: 26 de outubro de 2026</p>
 
   <p class="intro">
     Esta política descreve como o <strong>Pulso Utopia</strong> trata seus dados pessoais — incluindo dados de
@@ -95,20 +95,21 @@ footer a{color:var(--ink-dim)}
     <div class="body">
       <p><strong>Cadastro e conta:</strong> nome, e-mail e foto de perfil, obtidos via login com sua conta Google.</p>
       <p><strong>Dados de saúde da pessoa acompanhada</strong><span class="pill">dado sensível</span> — medicamentos ativos (nome, dosagem e horários), histórico de doses tomadas ou esquecidas, consultas e exames agendados, tarefas de rotina, e registros de bem-estar que você escolher preencher (peso, sono, humor, consumo de água).</p>
+      <p><strong>Controle de dose</strong><span class="pill">dado sensível</span> — se você usar essa função: o produto cadastrado, a dose em mg e o apelido que você der a ele; as <strong>compras</strong> que registrar (produto, data, quantidade de ampolas, mg e mL por ampola, validade e, se você quiser informar, o valor pago); o saldo de estoque calculado a partir delas; e as doses que marcar como tomadas, inclusive de datas anteriores ao uso do app. Todos esses dados são digitados por você — o app não os obtém de nenhuma outra fonte.</p>
       <p><strong>Perfil médico de emergência</strong><span class="pill">dado sensível</span> — se você preencher, tipo sanguíneo, alergias, condições crônicas e o contato principal de emergência, usados pela função SOS para exibição rápida a quem estiver socorrendo.</p>
       <p><strong>Documentos anexados:</strong> receitas, exames e laudos que você fotografar ou enviar para guardar dentro do app.</p>
       <p><strong>Conversas com a assistente de IA:</strong> as mensagens que você envia à assistente e o contexto de saúde necessário para ela responder (detalhado no item 3).</p>
       <p><strong>Acesso compartilhado (família/cuidador):</strong> quando mais de uma pessoa acompanha o mesmo perfil de cuidado (por exemplo, um cuidador e a pessoa cuidada, cada um em seu próprio celular), sabemos quais contas têm acesso àquele perfil e o que cada uma visualiza ou edita.</p>
-      <p><strong>Pagamento:</strong> a assinatura é processada pelo Mercado Pago. Não recebemos nem armazenamos o número do seu cartão — guardamos apenas o identificador da assinatura e seu status (ativa, em teste, cancelada).</p>
-      <p><strong>Dados técnicos do dispositivo:</strong> o app agenda os alarmes de lembrete diretamente no seu celular (inclusive rearmando-os automaticamente depois que o aparelho é reiniciado), para que o alarme toque mesmo com o app fechado.</p>
+      <p><strong>Pagamento:</strong> a assinatura é processada pela <strong>Google Play</strong> (com o apoio do serviço RevenueCat, que gerencia o status da assinatura) ou, quando contratada fora da loja, pelo <strong>Mercado Pago</strong>. Não recebemos nem armazenamos o número do seu cartão — guardamos apenas o identificador da assinatura e seu status (ativa, em teste, cancelada). O teste gratuito de 14 dias não pede cadastro de cartão. O RevenueCat recebe o identificador da sua conta no app e o status da compra.</p>
+      <p><strong>Dados técnicos do dispositivo:</strong> o app agenda os alarmes de lembrete diretamente no seu celular (inclusive rearmando-os automaticamente depois que o aparelho é reiniciado), para que o alarme toque mesmo com o app fechado. Em celulares Xiaomi, Redmi e POCO, o app identifica a marca do aparelho — apenas no próprio celular, sem enviar essa informação — para mostrar a orientação de liberar a “Inicialização automática”. Algumas preferências simples, como avisos que você já dispensou, ficam guardadas somente no seu aparelho.</p>
     </div>
   </section>
 
   <section>
     <h2>2. Para que usamos e base legal</h2>
     <div class="body">
-      <p>Usamos seus dados para: criar e manter sua conta; organizar medicamentos, consultas e tarefas; gerar lembretes e alarmes; permitir a função SOS e o perfil médico de emergência; gerar relatórios de adesão em PDF para levar ao médico; responder pela assistente de IA; processar e controlar sua assinatura; e dar suporte.</p>
-      <p>Para os <strong>dados de saúde</strong> (medicamentos, condições, perfil de emergência), a base legal é o seu <strong>consentimento específico e destacado</strong> (art. 11, I, e art. 7º, I da LGPD) — você opta por preencher essas informações porque quer usar o recurso, e pode revogar esse consentimento excluindo os dados a qualquer momento. Para os demais dados, as bases são a execução do contrato (uso do app e da assinatura), o cumprimento de obrigações legais e o legítimo interesse (segurança e melhoria do serviço).</p>
+      <p>Usamos seus dados para: criar e manter sua conta; organizar medicamentos, consultas e tarefas; gerar lembretes e alarmes; permitir a função SOS e o perfil médico de emergência; gerar relatórios de adesão em PDF para levar ao médico; registrar suas compras e doses e calcular o saldo de estoque e até quando ele dura; responder pela assistente de IA; processar e controlar sua assinatura; enviar os e-mails de confirmação de conta e de redefinição de senha; e dar suporte.</p>
+      <p>Para os <strong>dados de saúde</strong> (medicamentos, doses, compras e estoque, condições, perfil de emergência), a base legal é o seu <strong>consentimento específico e destacado</strong> (art. 11, I, e art. 7º, I da LGPD) — você opta por preencher essas informações porque quer usar o recurso, e pode revogar esse consentimento excluindo os dados a qualquer momento. Para os demais dados, as bases são a execução do contrato (uso do app e da assinatura), o cumprimento de obrigações legais e o legítimo interesse (segurança e melhoria do serviço).</p>
     </div>
   </section>
 
@@ -116,6 +117,7 @@ footer a{color:var(--ink-dim)}
     <h2>3. Assistente de IA — o que é enviado ao Google Gemini</h2>
     <div class="body">
       <p>A assistente do Pulso Utopia usa o <strong>Google Gemini</strong> para gerar respostas. A cada pergunta, enviamos ao Gemini: o nome da pessoa acompanhada, a lista de medicamentos ativos (nome, dosagem e horários), os próximos compromissos e tarefas pendentes, além da própria mensagem e o histórico recente da conversa — apenas o necessário para a assistente responder com contexto.</p>
+      <p>Dos dados do Controle de dose, o nome e a dose do produto cadastrado são enviados como qualquer outro medicamento. As <strong>compras, os valores pagos, o saldo de estoque e o apelido</strong> do produto <strong>não</strong> são enviados ao Gemini.</p>
       <p>A assistente é instruída a nunca alterar dosagens nem recomendar interromper medicamentos, e a orientar atendimento profissional em caso de sintomas graves. Ainda assim, como qualquer IA, ela pode errar — não use as respostas dela no lugar de orientação médica.</p>
       <p>Esse envio ao Gemini segue os termos de tratamento de dados da Google para a API do Gemini. Você pode limpar o histórico de conversa a qualquer momento dentro do app.</p>
     </div>
@@ -137,7 +139,9 @@ footer a{color:var(--ink-dim)}
         <li><strong>Firebase / Google Cloud</strong> — banco de dados (Firestore), autenticação e hospedagem das funções do app.</li>
         <li><strong>Google Gemini</strong> — processamento das perguntas feitas à assistente de IA, conforme detalhado no item 3.</li>
         <li><strong>Google</strong> — login com sua conta Google e sincronização opcional com a Google Agenda.</li>
-        <li><strong>Mercado Pago</strong> — processamento do pagamento da assinatura.</li>
+        <li><strong>Google Play</strong> e <strong>RevenueCat</strong> — cobrança e gerenciamento da assinatura contratada pela loja. O RevenueCat recebe o identificador da sua conta e o status da compra.</li>
+        <li><strong>Mercado Pago</strong> — processamento do pagamento da assinatura contratada fora da Google Play.</li>
+        <li><strong>Resend</strong> — envio dos e-mails de confirmação de conta e de redefinição de senha, que usam o seu endereço de e-mail.</li>
       </ul>
       <p>Não vendemos seus dados nem os compartilhamos para publicidade de terceiros. Dados podem ser fornecidos a autoridades quando houver obrigação legal.</p>
     </div>
@@ -156,7 +160,7 @@ footer a{color:var(--ink-dim)}
       <p>Você pode solicitar a qualquer momento: confirmação de que tratamos seus dados, acesso a eles, correção, portabilidade, anonimização ou exclusão, informação sobre compartilhamentos, e revogação do consentimento para o tratamento de dados de saúde. Para exercer, escreva para
         <a href="mailto:utopiadesenvolvimentos@gmail.com">utopiadesenvolvimentos@gmail.com</a>.
       </p>
-      <p>Você também pode remover medicamentos, o perfil médico de emergência ou documentos anexados diretamente dentro do app, a qualquer momento.</p>
+      <p>Você também pode remover medicamentos, compras e doses registradas, o perfil médico de emergência ou documentos anexados diretamente dentro do app, a qualquer momento.</p>
     </div>
   </section>
 
@@ -190,7 +194,7 @@ footer a{color:var(--ink-dim)}
   </section>
 
   <footer>
-    Pulso Utopia — desenvolvido por <a href="https://utopiadesenvolvimentos.com.br/" target="_blank" rel="noreferrer">Utopia Desenvolvimentos</a>. Este documento é um rascunho preparado para revisão de um(a) advogado(a) especializado(a) em LGPD antes da publicação definitiva.
+    Pulso Utopia — desenvolvido por <a href="https://utopiadesenvolvimentos.com.br/" target="_blank" rel="noreferrer">Utopia Desenvolvimentos</a>.
   </footer>
 </main>
 
